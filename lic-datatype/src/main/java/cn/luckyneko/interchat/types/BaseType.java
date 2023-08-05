@@ -1,5 +1,7 @@
 package cn.luckyneko.interchat.types;
 
+import java.io.InputStream;
+
 /**
  * Base class of all data type classes.
  * <br>
@@ -13,14 +15,24 @@ public abstract class BaseType<SourceType> {
     /**
      * Original value.
      */
-    private final SourceType value;
+    protected SourceType value;
 
     /**
      * Base class constructor.
+     *
      * @param v original value
      */
     protected BaseType(final SourceType v) {
         this.value = v;
+    }
+
+    /**
+     * Gets data instance from stream.
+     *
+     * @param inputStream an input stream instance
+     */
+    protected BaseType(final InputStream inputStream) {
+
     }
 
     /**
