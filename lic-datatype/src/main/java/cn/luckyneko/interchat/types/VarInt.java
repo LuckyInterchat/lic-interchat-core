@@ -10,7 +10,12 @@ import java.util.Arrays;
  * @author Lucky_He
  */
 public final class VarInt extends BaseType<Integer> {
-    private VarInt(final Integer v) {
+    /**
+     * VarInt constructor.
+     *
+     * @param v original value
+     */
+    public VarInt(final Integer v) {
         super(v);
     }
 

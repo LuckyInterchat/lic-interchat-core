@@ -15,25 +15,29 @@ public abstract class BaseType<SourceType> {
      */
     private final SourceType value;
 
+    /**
+     * Base class constructor.
+     * @param v original value
+     */
     protected BaseType(final SourceType v) {
         this.value = v;
     }
     /**
-     * Returns byte array of the data.
+     * Gets byte array of the data.
      *
      * @return byte array of the data
      */
     public abstract byte[] getBytes();
 
     /**
-     * Returns length of byte array of the data.
+     * Gets length of byte array of the data.
      *
      * @return length of byte array of the data
      */
     public abstract int getBytesLength();
 
     /**
-     * Return original value.
+     * Gets original value.
      *
      * @return original value
      */
