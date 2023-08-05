@@ -10,13 +10,8 @@ import java.util.Arrays;
  * @author Lucky_He
  */
 public final class VarInt extends BaseType<Integer> {
-    /**
-     * original value.
-     */
-    private Integer value;
-
-    private VarInt() {
-
+    private VarInt(final Integer v) {
+        super(v);
     }
 
     @Override
@@ -25,7 +20,7 @@ public final class VarInt extends BaseType<Integer> {
         int highestBit = BitOperationNumbers.BYTE_HIGHEST_BIT_SET;
         int movingBits = BitOperationNumbers.VAR_MOVING_BITS;
 
-        int temp = this.value;
+        int temp = getValue();
         byte[] bytes = new byte[lowSeven];
         int i = 0;
 
@@ -44,10 +39,5 @@ public final class VarInt extends BaseType<Integer> {
     @Override
     public int getBytesLength() {
         return getBytes().length;
-    }
-
-    @Override
-    public Integer getValue() {
-        return this.value;
     }
 }

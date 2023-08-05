@@ -11,6 +11,14 @@ package cn.luckyneko.interchat.types;
  */
 public abstract class BaseType<SourceType> {
     /**
+     * Original value.
+     */
+    private final SourceType value;
+
+    protected BaseType(final SourceType v) {
+        this.value = v;
+    }
+    /**
      * Returns byte array of the data.
      *
      * @return byte array of the data
@@ -25,9 +33,11 @@ public abstract class BaseType<SourceType> {
     public abstract int getBytesLength();
 
     /**
-     * Returns original data.
+     * Return original value.
      *
-     * @return original data
+     * @return original value
      */
-    public abstract SourceType getValue();
+    public SourceType getValue() {
+        return value;
+    }
 }
