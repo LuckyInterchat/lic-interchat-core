@@ -10,7 +10,6 @@ import java.util.Arrays;
  * @author Lucky_He
  */
 public final class VarInt extends BaseType<Integer> {
-
     /**
      * original value.
      */
