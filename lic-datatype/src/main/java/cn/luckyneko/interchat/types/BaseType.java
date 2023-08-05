@@ -22,6 +22,7 @@ public abstract class BaseType<SourceType> {
     protected BaseType(final SourceType v) {
         this.value = v;
     }
+
     /**
      * Gets byte array of the data.
      *
