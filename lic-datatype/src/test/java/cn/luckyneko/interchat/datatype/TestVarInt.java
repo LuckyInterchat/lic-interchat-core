@@ -1,10 +1,12 @@
 package cn.luckyneko.interchat.datatype;
 
 import cn.luckyneko.interchat.exception.VarIntException;
+import cn.luckyneko.interchat.exception.VarIntTooBigException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -70,6 +72,11 @@ public class TestVarInt {
     public void testByteArrayInputStreamByUsingArgNull() {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(null);
         System.out.println(byteArrayInputStream.read());
+    }
+
+    @Test(expected = VarIntException.class)
+    public void testGreaterThan5Bytes() {
+        new VarInt(new ByteArrayInputStream(new byte[] {((byte) 0x80), ((byte) 0x80), ((byte) 0x80), ((byte) 0x80), ((byte) 0x80)}));
     }
 
     @Test
