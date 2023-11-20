@@ -69,7 +69,7 @@ public class TestVarInt {
     @Test(expected = NullPointerException.class)
     public void testByteArrayInputStreamByUsingArgNull() {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(null);
-        byteArrayInputStream.read();
+        System.out.println(byteArrayInputStream.read());
     }
 
     @Test
