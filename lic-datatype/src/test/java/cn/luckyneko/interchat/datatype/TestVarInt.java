@@ -1,12 +1,10 @@
 package cn.luckyneko.interchat.datatype;
 
 import cn.luckyneko.interchat.exception.VarIntException;
-import cn.luckyneko.interchat.exception.VarIntTooBigException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
