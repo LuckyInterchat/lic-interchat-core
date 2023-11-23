@@ -68,6 +68,17 @@ public class VarString implements IDataType<String> {
         this(new ByteArrayInputStream(bytes == null ? new byte[] {} : bytes));
     }
 
+    /**
+     * VarString 构造方法
+     * <p>
+     * 直接通过原文构造
+     * </p>
+     * @param value 字符串原文
+     */
+    public VarString(String value) {
+        this.value = value;
+    }
+
     @Override
     public byte[] getBytes() {
         byte[] bytes = this.value.getBytes(charset);
