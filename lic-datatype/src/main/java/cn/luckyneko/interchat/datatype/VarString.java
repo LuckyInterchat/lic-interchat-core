@@ -45,6 +45,10 @@ public class VarString implements IDataType<String> {
         byte[] bytes;
         try {
             VarInt len = new VarInt(inputStream);
+            if (len.getValue() == 0) {
+                this.value = "";
+                return;
+            }
             bytes = new byte[len.getValue()];
             int readLen = inputStream.read(bytes);
             if (readLen != len.getValue()) {
