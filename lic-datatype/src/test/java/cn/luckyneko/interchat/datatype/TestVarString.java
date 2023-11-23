@@ -53,7 +53,7 @@ public class TestVarString {
         // null
         String n = null;
         bytesList.add(new byte[] {0x00});
-        stringList.add(null);
+        stringList.add(n);
         lenList.add(1);
     }
 
