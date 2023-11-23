@@ -81,7 +81,7 @@ public class VarString implements IDataType<String> {
 
     @Override
     public byte[] getBytes() {
-        byte[] bytes = this.value.getBytes(charset);
+        byte[] bytes = getValue().getBytes(charset);
         byte[] lengthBytes = (new VarInt(bytes.length)).getBytes();
         return ByteUtils.byteMergeAll(lengthBytes, bytes);
     }
