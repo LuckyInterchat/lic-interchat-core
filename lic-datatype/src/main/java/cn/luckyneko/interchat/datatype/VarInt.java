@@ -72,6 +72,13 @@ public class VarInt implements IDataType<Integer> {
         this(new ByteArrayInputStream(bytes == null ? new byte[] {} : bytes));
     }
 
+    /**
+     * VarInt 构造方法
+     * <p>
+     * 直接通过原文构造
+     * </p>
+     * @param value 整型原文
+     */
     public VarInt(int value) {
         this.value = value;
     }
