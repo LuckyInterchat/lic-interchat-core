@@ -1,11 +1,11 @@
 package cn.luckyneko.interchat.datatype;
 
 import cn.luckyneko.interchat.exception.VarIntException;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,9 +80,7 @@ public class TestVarInt {
     @Test
     public void testReadZeroByteArrayHasNext() {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[]{});
-        if (byteArrayInputStream.available() != 0) {
-            throw new VarIntException("Zero byte array available not correct");
-        }
+        Assert.assertEquals(byteArrayInputStream.available(), 0);
     }
 
     @Test
@@ -91,9 +89,7 @@ public class TestVarInt {
             byte[] bytes = bytesList.get(i);
             VarInt varInt = new VarInt(new ByteArrayInputStream(bytes));
             int correctResult = numList.get(i);
-            if (varInt.getValue() != correctResult) {
-                throw new VarIntException("Wrong value: " + Arrays.toString(bytes) + " -> " + varInt.getValue() + ", correct answer is " + correctResult);
-            }
+            Assert.assertEquals(((int) varInt.getValue()), correctResult);
         }
     }
 
@@ -103,9 +99,7 @@ public class TestVarInt {
             byte[] bytes = bytesList.get(i);
             VarInt varInt = new VarInt(bytes);
             int correctResult = numList.get(i);
-            if (varInt.getValue() != correctResult) {
-                throw new VarIntException("Wrong value: " + Arrays.toString(bytes) + " -> " + varInt.getValue() + ", correct answer is " + correctResult);
-            }
+            Assert.assertEquals(((int) varInt.getValue()), correctResult);
         }
     }
 
@@ -116,9 +110,7 @@ public class TestVarInt {
             VarInt varInt = new VarInt(value);
             byte[] bytes = varInt.getBytes();
             for (int j = 0; j < bytes.length; j++) {
-                if (bytes[j] != bytesList.get(i)[j]) {
-                    throw new VarIntException("Wrong bytes: " + value + " -> " + Arrays.toString(bytes) + ", correct answer is " + Arrays.toString(bytesList.get(i)) + " (warn that correct answer may have extra bytes)");
-                }
+                Assert.assertEquals(bytes[j], bytesList.get(i)[j]);
             }
         }
     }
@@ -130,9 +122,7 @@ public class TestVarInt {
             VarInt varInt = new VarInt(value);
             int correctLen = lenList.get(i);
             int len = varInt.getBytesLength();
-            if (len != correctLen) {
-                throw new VarIntException("Wrong length: " + value + " -> " + len + ", correct answer is " + correctLen);
-            }
+            Assert.assertEquals(len, correctLen);
         }
     }
 
@@ -142,9 +132,7 @@ public class TestVarInt {
             byte[] bytes = bytesList.get(i);
             VarInt varInt = new VarInt(bytes);
             int correctLen = lenList.get(i);
-            if (varInt.getBytesLength() != correctLen) {
-                throw new VarIntException("Wrong length: " + Arrays.toString(bytes) + " -> " + varInt.getBytesLength() + ", correct answer is " + correctLen);
-            }
+            Assert.assertEquals(varInt.getBytesLength(), correctLen);
         }
     }
 
