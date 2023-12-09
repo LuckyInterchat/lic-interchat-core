@@ -52,7 +52,7 @@ public class VarString implements IDataType<String> {
             bytes = new byte[len.getValue()];
             int readLen = inputStream.read(bytes);
             if (readLen != len.getValue()) {
-                throw new VarStringLengthNotMatchException("VarString length not match!");
+                throw new VarStringLengthNotMatchException("VarString length not match");
             }
         } catch (VarIntException | VarStringLengthNotMatchException | IOException e) {
             throw new VarStringException(e);
