@@ -1,7 +1,7 @@
 package cn.luckyneko.interchat.datatype;
 
 import cn.luckyneko.interchat.datatype.util.ByteUtils;
-import cn.luckyneko.interchat.exception.VarByteException;
+import cn.luckyneko.interchat.exception.VarBytesException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,11 +12,11 @@ import java.util.List;
 
 /**
  * @Author Lucky_He
- * @Description VarByte 测试
+ * @Description VarBytes 测试
  * @Date 2023/12/9 21:25
  */
 
-public class TestVarByte {
+public class TestVarBytes {
 
     private static List<byte[]> bytesList;
     private static List<byte[]> valueList;
@@ -65,26 +65,26 @@ public class TestVarByte {
         lenList.add(130);
     }
 
-    @Test(expected = VarByteException.class)
+    @Test(expected = VarBytesException.class)
     public void testEmptyInputStream() {
         ByteArrayInputStream is = new ByteArrayInputStream(new byte[] {});
-        new VarByte(is);
+        new VarBytes(is);
     }
 
-    @Test(expected = VarByteException.class)
+    @Test(expected = VarBytesException.class)
     public void testEmptyBytesArray() {
-        new VarByte(new byte[] {}, VarByte.Type.PACKED);
+        new VarBytes(new byte[] {}, VarBytes.Type.PACKED);
     }
 
     @Test
     public void testConstructorInputStreamBytesToValue() {
         for (int i = 0; i < bytesList.size(); i++) {
             byte[] bytes = bytesList.get(i);
-            VarByte varByte = new VarByte(new ByteArrayInputStream(bytes));
+            VarBytes varBytes = new VarBytes(new ByteArrayInputStream(bytes));
             byte[] correctResult = valueList.get(i);
-            Assert.assertEquals(correctResult.length, varByte.getValue().length);
+            Assert.assertEquals(correctResult.length, varBytes.getValue().length);
             for (int j = 0; j < correctResult.length; j++) {
-                Assert.assertEquals(correctResult[j], varByte.getValue()[j]);
+                Assert.assertEquals(correctResult[j], varBytes.getValue()[j]);
             }
         }
     }
@@ -93,11 +93,11 @@ public class TestVarByte {
     public void testConstructorByteArrayInputStreamBytesToValue() {
         for (int i = 0; i < bytesList.size(); i++) {
             byte[] bytes = bytesList.get(i);
-            VarByte varByte = new VarByte(bytes, VarByte.Type.PACKED);
+            VarBytes varBytes = new VarBytes(bytes, VarBytes.Type.PACKED);
             byte[] correctResult = valueList.get(i);
-            Assert.assertEquals(correctResult.length, varByte.getValue().length);
+            Assert.assertEquals(correctResult.length, varBytes.getValue().length);
             for (int j = 0; j < correctResult.length; j++) {
-                Assert.assertEquals(correctResult[j], varByte.getValue()[j]);
+                Assert.assertEquals(correctResult[j], varBytes.getValue()[j]);
             }
         }
     }
@@ -106,8 +106,8 @@ public class TestVarByte {
     public void testConstructorValueToBytes() {
         for (int i = 0; i < valueList.size(); i++) {
             byte[] value = valueList.get(i);
-            VarByte varByte = new VarByte(value, VarByte.Type.VALUE);
-            byte[] bytes = varByte.getBytes();
+            VarBytes varBytes = new VarBytes(value, VarBytes.Type.VALUE);
+            byte[] bytes = varBytes.getBytes();
             for (int j = 0; j < bytes.length; j++) {
                 Assert.assertEquals(bytes[j], bytesList.get(i)[j]);
             }
@@ -118,9 +118,9 @@ public class TestVarByte {
     public void testBytesLengthValueToBytes() {
         for (int i = 0; i < valueList.size(); i++) {
             byte[] value = valueList.get(i);
-            VarByte varByte = new VarByte(value, VarByte.Type.VALUE);
+            VarBytes varBytes = new VarBytes(value, VarBytes.Type.VALUE);
             int correctLen = lenList.get(i);
-            int len = varByte.getBytesLength();
+            int len = varBytes.getBytesLength();
             Assert.assertEquals(len, correctLen);
         }
     }
@@ -129,9 +129,9 @@ public class TestVarByte {
     public void testBytesLengthBytesToValue() {
         for (int i = 0; i < bytesList.size(); i++) {
             byte[] bytes = bytesList.get(i);
-            VarByte varByte = new VarByte(bytes, VarByte.Type.PACKED);
+            VarBytes varBytes = new VarBytes(bytes, VarBytes.Type.PACKED);
             int correctLen = lenList.get(i);
-            Assert.assertEquals(varByte.getBytesLength(), correctLen);
+            Assert.assertEquals(varBytes.getBytesLength(), correctLen);
         }
     }
 
